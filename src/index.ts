@@ -1,12 +1,16 @@
 import { App } from 'vue'
+import RouterViewTransition from './RouterViewTransition.vue'
 
 interface Router {
     beforeEach: (to: any, from: any, next: any) => void
     afterEach: (to: any, from: any) => void
 }
 
+export { RouterViewTransition }
+
 export default {
-    install(app:App, router: Router) {
+    install(app: App, router: Router) {
+        app.component('RouterViewTransition', RouterViewTransition)
         console.log('[vue-router-transition] install');
     }
 }
