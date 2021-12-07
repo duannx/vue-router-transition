@@ -1,14 +1,15 @@
 {
-  "name": "vue-router-transition",
+  "name": "@duandz/vue-router-transition",
   "version": "1.0.0",
   "description": "Transition plugin for vue router next",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "duandz",
   "license": "MIT",
   "private": false,
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
     "postcss": "^8.4.4",
@@ -20,5 +21,21 @@
     "typescript": "^4.5.2",
     "vue": "^3.0.0",
     "vue-router": "^4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duannx/vue-router-transition.git"
+  },
+  "keywords": [
+    "vue3",
+    "vue router",
+    "vue router transition",
+    "vue page transition",
+    "transition",
+    "animation"
+  ],
+  "bugs": {
+    "url": "https://github.com/duannx/vue-router-transition/issues"
+  },
+  "homepage": "https://github.com/duannx/vue-router-transition#readme"
 }
