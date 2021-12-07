@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .pb-full {
+        padding-bottom: 100%;
+    }
+}
+
+.page {
+    @apply bg-white overflow-auto;
+}
+.page-content {
+    @apply pl-4 pr-4 m-0 ml-auto mr-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl;
+}
+
+.list {
+    @apply grid mt-8;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2em;
+}

@@ -8,6 +8,10 @@ interface Router {
 
 export { RouterViewTransition }
 
+export type {
+    RouterMetaTransition
+} from './types'
+
 export default {
     install(app: App, router: Router) {
         app.component('RouterViewTransition', RouterViewTransition)

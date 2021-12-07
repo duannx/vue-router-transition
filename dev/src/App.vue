@@ -5,5 +5,4 @@
 
 <template>
   <RouterViewTransition />
-  <router-view></router-view>
 </template>

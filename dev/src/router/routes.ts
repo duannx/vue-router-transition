@@ -1,7 +1,7 @@
 import Home from '../pages/Home.vue';
 import { RouteRecordRaw } from 'vue-router';
-// import ProductDetails from '../pages/ProductDetails';
-// import Collection from '../pages/Collection';
+import Product from '../pages/Product.vue';
+import Collection from '../pages/Collection.vue';
 
 const routes: RouteRecordRaw[] = [
     {
@@ -9,36 +9,36 @@ const routes: RouteRecordRaw[] = [
         name: 'home',
         component: Home,
         meta: {
-            trasitions: {
-                priority: -1,
+            transitions: {
+                priority: 3,
                 in: 'fade',
                 out: 'fade'
             }
         }
     },
-    // {
-    //     path: '/collection/:id',
-    //     component: Collection,
-    //     name: 'collection',
-    //     meta: {
-    //         transitions: {
-    //             priority: 2,
-    //             in: 'slide-left-fade',
-    //             out: 'slide-right-fade'
-    //         }
-    //     }
-    // },
-    // {
-    //     path: '/product/:id',
-    //     component: ProductDetails,
-    //     name: 'product-details',
-    //     meta: {
-    //         transitions: {
-    //             priority: 1,
-    //             in: 'slide-left-fade',
-    //             out: 'slide-right-fade'
-    //         }
-    //     }
-    // }
+    {
+        path: '/collection/:id',
+        component: Collection,
+        name: 'collection',
+        meta: {
+            transitions: {
+                priority: 2,
+                in: 'fade-left',
+                out: 'fade-right'
+            }
+        }
+    },
+    {
+        path: '/product/:id',
+        component: Product,
+        name: 'product',
+        meta: {
+            transitions: {
+                priority: 1,
+                in: 'fade-left',
+                out: 'fade-right'
+            }
+        }
+    }
 ]
 export default routes
