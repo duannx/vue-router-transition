@@ -14,16 +14,18 @@
 **Note:** The plugin only support for Vue3+ and Vue Router Next (vue-router^4)
 
 ```bash
-npm i vue-router-transition
-yarn add vue-router-transition
+npm i @duandz/vue-router-transition
+yarn add @duandz/vue-router-transition
 ```
 
 ## Usage :rocket:
 ### Import the plugin on your main.js
 ```js
 // src/main.js
-import VueRouterTransition from 'vue-router-transition'
+import VueRouterTransition from '@duandz/vue-router-transition'
 Vue.use(VueRouterTransition)
+// Optional. Import css file if you want to use built in css
+import '@duandz/vue-router-transition/dist/style.css'
 ```
 ### Replace your `router-view` with `RouterViewTransition` component
 ```html
