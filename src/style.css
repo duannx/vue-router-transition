@@ -11,26 +11,26 @@
     transition: transform var(--animation-duration) ease-in-out, transform var(--animation-duration) ease-in-out;
 }
 
-.fade-left-enter-from {
+.slide-left-enter-from {
     transform: translate3d(100%, 0, 0);
 }
-.fade-left-enter-to {
+.slide-left-enter-to {
     transform: translate3d(0, 0, 0);
 }
-.fade-left-leave-to {
+.slide-left-leave-to {
     transform: translate3d(-20%, 0, 0);
 }
 
-.fade-right-enter-from {
+.slide-right-enter-from {
     transform: translate3d(-20%, 0, 0);
 }
-.fade-right-enter-to {
+.slide-right-enter-to {
     transform: translate3d(0, 0, 0);
 }
-.fade-right-leave-from {
+.slide-right-leave-from {
     z-index: 1;
 }
-.fade-right-leave-to {
+.slide-right-leave-to {
     transform: translate3d(100%, 0, 0);
     z-index: 1;
 }

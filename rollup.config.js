@@ -7,7 +7,7 @@ export default async function config (args) {
         input: ['src/index.ts'],
         output: {
             dir: 'dist',
-            format: 'cjs',
+            format: 'es',
         },
         plugins: [
             vue(),

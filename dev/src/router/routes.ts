@@ -23,8 +23,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 2,
-                in: 'fade-left',
-                out: 'fade-right'
+                in: 'slide-left',
+                out: 'slide-right'
             }
         }
     },
@@ -35,8 +35,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 1,
-                in: 'fade-left',
-                out: 'fade-right'
+                in: 'slide-left',
+                out: 'slide-right'
             }
         }
     }
