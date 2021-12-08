@@ -7,5 +7,5 @@ export default defineConfig({
   build: {
     outDir: '../docs'
   },
-  base: '/vue-router-transition/'
+  base: process.env.NODE_ENV === 'production' ? '/vue-router-transition/' : '/',
 })
