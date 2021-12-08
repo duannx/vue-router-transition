@@ -7,5 +7,4 @@ export default defineConfig({
   build: {
     outDir: '../docs'
   },
-  base: '/vue-router-transition/'
 })
