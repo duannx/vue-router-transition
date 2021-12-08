@@ -10,7 +10,6 @@
       <List
         v-if="collection"
         :collections="collection.products"
-        to-router-name="product"
       />
     </div>
   </div>
@@ -27,6 +26,7 @@ interface Product {
   description: string;
   image: string;
   price: number;
+  path: string;
 }
 
 interface Collection {
@@ -39,7 +39,13 @@ export default defineComponent({
   components: {
     List,
   },
-  setup() {
+  props: {
+    id: {
+      type: Number,
+      required: false,
+    },
+  },
+  setup(props) {
     const router = useRouter();
     const collections: Array<Collection> = [
       {
@@ -48,7 +54,8 @@ export default defineComponent({
         products: [
           {
             id: 1,
-            title: "Dog 1",
+            title: "Dog 1 - Slide up",
+            path: "/product/1",
             description: "A dog",
             image:
               "https://images.unsplash.com/photo-1608744882201-52a7f7f3dd60?w=500",
@@ -56,7 +63,8 @@ export default defineComponent({
           },
           {
             id: 2,
-            title: "Dog 2",
+            title: "Dog 2 - Slide down",
+            path: "/product/2",
             description: "A dog",
             image:
               "https://images.unsplash.com/photo-1608744882201-52a7f7f3dd60?w=500",
@@ -64,7 +72,8 @@ export default defineComponent({
           },
           {
             id: 3,
-            title: "Dog 3",
+            title: "Dog 3 - Fade",
+            path: "/product/3",
             description: "A dog",
             image:
               "https://images.unsplash.com/photo-1608744882201-52a7f7f3dd60?w=500",
@@ -72,7 +81,8 @@ export default defineComponent({
           },
           {
             id: 4,
-            title: "Dog 4",
+            title: "Dog 4 - Zoom in",
+            path: "/product/4",
             description: "A dog",
             image:
               "https://images.unsplash.com/photo-1608744882201-52a7f7f3dd60?w=500",
@@ -87,6 +97,7 @@ export default defineComponent({
           {
             id: 5,
             title: "Cat 1",
+            path: "/product/5",
             description: "A cat",
             image:
               "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500",
@@ -95,6 +106,7 @@ export default defineComponent({
           {
             id: 6,
             title: "Cat 2",
+            path: "/product/6",
             description: "A cat",
             image:
               "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500",
@@ -103,6 +115,7 @@ export default defineComponent({
           {
             id: 7,
             title: "Cat 3",
+            path: "/product/7",
             description: "A cat",
             image:
               "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500",
@@ -111,6 +124,7 @@ export default defineComponent({
           {
             id: 8,
             title: "Cat 4",
+            path: "/product/8",
             description: "A cat",
             image:
               "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500",
@@ -122,8 +136,9 @@ export default defineComponent({
 
     return {
       collection: computed(() => {
-        const id = router.currentRoute.value.params.id;
-        return collections.find((collection) => collection.id == +id);
+        let id = +router.currentRoute.value.params.id;
+        if (!id) id = props.id
+        return collections.find((collection) => collection.id == id);
       }),
     };
   },

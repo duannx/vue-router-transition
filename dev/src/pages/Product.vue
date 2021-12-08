@@ -33,7 +33,13 @@ interface Product {
 }
 
 export default defineComponent({
-  setup() {
+  props: {
+    id: {
+      type: Number,
+      required: false,
+    },
+  },
+  setup(props) {
     const dog: Product = {
       id: 1,
       title: "Dog",
@@ -61,7 +67,8 @@ export default defineComponent({
     const router = useRouter();
     return {
       product: computed(() => {
-        const id = +router.currentRoute.value.params.id;
+        let id = +router.currentRoute.value.params.id;
+        if(!id) id = props.id;
         if (id >= 5) return cat;
         return dog;
       }),

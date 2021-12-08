@@ -1,12 +1,7 @@
 <template>
   <div class="list" v-if="collections">
     <router-link
-      :to="{
-        name: toRouterName,
-        params: {
-          id: collection.id
-        }
-      }"
+      :to="collection.path"
       v-for="collection of collections"
       :key="collection.id"
     >
@@ -42,11 +37,6 @@ export default defineComponent({
     collections: {
       type: Array,
       required: true,
-    },
-    toRouterName: {
-      type: String,
-      required: true,
-      default: 'collection',
     },
   },
   setup() {

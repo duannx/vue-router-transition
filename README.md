@@ -58,7 +58,7 @@ export default [
             transitions: {
                 priority: 2,
                 in: 'slide-left',
-                out: 'slide-right'
+                out: 'slide-left-reverse'
             }
         }
     },
@@ -69,8 +69,8 @@ export default [
         meta: {
             transitions: {
                 priority: 1,
-                in: 'slide-left',
-                out: 'slide-right'
+                in: 'slide-right',
+                out: 'slide-right-reverse'
             }
         }
     }
@@ -82,6 +82,9 @@ export default [
 - fade
 - slide-left
 - slide-right
+- slide-up
+- sldie-down
+- zoom-in
 - More comming soon...
 
 You can easily add your custom transition by providing a name and styling for it. This plugin is built on top of [Vue3 Transition](https://v3.vuejs.org/guide/transitions-overview.html). Strong recommend to read Vue3 Transition before customizing the plugin. The classes to add style are: `yourClassName-enter-from, yourClassName-enter-to, yourClassName-enter-active, yourClassName-leave-from, yourClassName-leave-to, yourClassName-leave-active`

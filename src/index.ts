@@ -15,6 +15,5 @@ export type {
 export default {
     install(app: App, router: Router) {
         app.component('RouterViewTransition', RouterViewTransition)
-        console.log('[vue-router-transition] install');
     }
 }
