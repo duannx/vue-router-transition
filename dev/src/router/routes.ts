@@ -83,7 +83,7 @@ const routes: RouteRecordRaw[] = [
             }
         },
         props: {
-            id: 1
+            id: 2
         }
     },
     {
@@ -97,7 +97,7 @@ const routes: RouteRecordRaw[] = [
             }
         },
         props: {
-            id: 1
+            id: 3
         }
     },
     {
@@ -111,7 +111,7 @@ const routes: RouteRecordRaw[] = [
             }
         },
         props: {
-            id: 1
+            id: 4
         }
     },
     {

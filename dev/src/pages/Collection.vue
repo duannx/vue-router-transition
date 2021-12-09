@@ -7,10 +7,7 @@
       <h1 class="text-4xl text-center mt-10">
         Collection: {{ collection.title }}
       </h1>
-      <List
-        v-if="collection"
-        :collections="collection.products"
-      />
+      <List v-if="collection" :collections="collection.products" />
     </div>
   </div>
 </template>
@@ -19,12 +16,20 @@
 import { computed, defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import List from "../components/List.vue";
+import Dog1 from "../assets/dog_1.jpeg";
+import Dog2 from "../assets/dog_2.jpeg";
+import Dog3 from "../assets/dog_3.jpeg";
+import Dog4 from "../assets/dog_4.png";
+import Cat1 from "../assets/cat_1.jpeg";
+import Cat2 from "../assets/cat_2.jpeg";
+import Cat3 from "../assets/cat_3.jpeg";
+import Cat4 from "../assets/cat_4.jpeg";
 
 interface Product {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image: any;
   price: number;
   path: string;
 }
@@ -57,8 +62,7 @@ export default defineComponent({
             title: "Dog 1 - Slide up",
             path: "/product/1",
             description: "A dog",
-            image:
-              "https://images.unsplash.com/photo-1608744882201-52a7f7f3dd60?w=500",
+            image: Dog1,
             price: 100,
           },
           {
@@ -66,8 +70,7 @@ export default defineComponent({
             title: "Dog 2 - Slide down",
             path: "/product/2",
             description: "A dog",
-            image:
-              "https://images.unsplash.com/photo-1608744882201-52a7f7f3dd60?w=500",
+            image: Dog2,
             price: 100,
           },
           {
@@ -75,8 +78,7 @@ export default defineComponent({
             title: "Dog 3 - Fade",
             path: "/product/3",
             description: "A dog",
-            image:
-              "https://images.unsplash.com/photo-1608744882201-52a7f7f3dd60?w=500",
+            image: Dog3,
             price: 100,
           },
           {
@@ -84,8 +86,7 @@ export default defineComponent({
             title: "Dog 4 - Zoom in",
             path: "/product/4",
             description: "A dog",
-            image:
-              "https://images.unsplash.com/photo-1608744882201-52a7f7f3dd60?w=500",
+            image: Dog4,
             price: 100,
           },
         ],
@@ -99,8 +100,7 @@ export default defineComponent({
             title: "Cat 1 - animate__bounceInDown",
             path: "/product/5",
             description: "A cat",
-            image:
-              "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500",
+            image: Cat1,
             price: 100,
           },
           {
@@ -108,8 +108,7 @@ export default defineComponent({
             title: "Cat 2 - animate__backInLeft",
             path: "/product/6",
             description: "A cat",
-            image:
-              "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500",
+            image: Cat2,
             price: 100,
           },
           {
@@ -117,8 +116,7 @@ export default defineComponent({
             title: "Cat 3 - animate__flipInX",
             path: "/product/7",
             description: "A cat",
-            image:
-              "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500",
+            image: Cat3,
             price: 100,
           },
           {
@@ -126,8 +124,7 @@ export default defineComponent({
             title: "Cat 4 - animate__rollIn",
             path: "/product/8",
             description: "A cat",
-            image:
-              "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500",
+            image: Cat4,
             price: 100,
           },
         ],
@@ -137,7 +134,7 @@ export default defineComponent({
     return {
       collection: computed(() => {
         let id = +router.currentRoute.value.params.id;
-        if (!id) id = props.id
+        if (!id) id = props.id;
         return collections.find((collection) => collection.id == id);
       }),
     };

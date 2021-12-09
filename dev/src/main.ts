@@ -3,10 +3,10 @@ import App from './App.vue'
 import router from './router'
 
 import VueRouterTransition from '@duandz/vue-router-transition'
-// import VueRouterTransition from '../../src'
+// import VueRouterTransition from '../../dist'
 
 import '@duandz/vue-router-transition/dist/style.css'
-// import '../../src/style.css'
+// import '../../dist/style.css'
 
 import 'animate.css'
 import './assets/styles/index.css'
