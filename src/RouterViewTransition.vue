@@ -1,8 +1,17 @@
 <template>
   <router-view v-slot="{ Component, route }">
-    <transition 
-    v-bind="$attrs"
-    :name="route.meta.transition">
+    <transition
+      v-bind="$attrs"
+      :name="route.meta.transition"
+      :enter-active-class="route.meta.enterActiveClass"
+      :leave-active-class="route.meta.leaveActiveClass"
+      @enter="enter"
+      @leave="leave"
+      @after-enter="afterEnter"
+      @after-leave="afterLeave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
+    >
       <component :is="Component" />
     </transition>
   </router-view>
@@ -10,14 +19,27 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
-import { RouterMetaTransition } from "./types";
+import { RouterMetaTransition, Transition } from "./types";
 
 export default defineComponent({
   props: {
     defaultClassTransition: {
       type: String,
       required: false,
-      default: "transition-active"
+      default: "transition-active",
+    },
+    // Class add to body when enter transition active
+    bodyClassEnterTransitonActive:{
+      type: String,
+      required: false,
+      default: "body-enter-transition-active",
+    },
+    // Class add to body when leave transition active
+    // It should be different with bodyClassEnterTransitonActive to avoid conflict and accident remove other class
+    bodyClassLeaveTransitonActive:{
+      type: String,
+      required: false,
+      default: "body-leave-transition-active",
     }
   },
   setup(props) {
@@ -38,22 +60,39 @@ export default defineComponent({
         .transitions as RouterMetaTransition;
       const fromTransistions: RouterMetaTransition | undefined = from.meta
         .transitions as RouterMetaTransition;
-      let transition = "";
+
+      const transition: Transition = {
+        name: undefined,
+        enterClass: undefined,
+        leaveClass: undefined,
+      };
+
+      function setTransition(routeTransition: Transition | string) {
+        if (typeof routeTransition === "string") {
+          transition.name = routeTransition;
+        } else {
+          transition.name = routeTransition.name;
+          transition.enterClass = routeTransition.enterClass;
+          transition.leaveClass = routeTransition.leaveClass;
+        }
+      }
 
       // Choose the highest priority transition (lowest number)
       if (toTransistions && fromTransistions) {
         fromTransistions.priority < toTransistions.priority
-          ? (transition = fromTransistions.out)
-          : (transition = toTransistions.in);
+          ? setTransition(fromTransistions.leave)
+          : setTransition(toTransistions.enter);
       } else if (toTransistions) {
-        transition = toTransistions.in;
+        setTransition(toTransistions.enter);
       } else if (fromTransistions) {
-        transition = fromTransistions.out;
+        setTransition(fromTransistions.leave);
       }
 
-      to.meta.transition = transition
-        ? props.defaultClassTransition + " " + transition
-        : "";
+      to.meta.transition = transition.name
+        ? props.defaultClassTransition + " " + transition.name
+        : undefined;
+      to.meta.enterActiveClass = transition.enterClass;
+      to.meta.leaveActiveClass = transition.leaveClass;
 
       // Add the new path to the history.
       if (to.path !== from.path) {
@@ -69,5 +108,27 @@ export default defineComponent({
 
     return {};
   },
+  methods:{
+    // Add class to body when transition active
+    enter() {
+      document.body.classList.add(this.bodyClassEnterTransitonActive);
+    },
+    afterEnter() {
+      document.body.classList.remove(this.bodyClassEnterTransitonActive);
+    },
+    enterCancelled() {
+      document.body.classList.remove(this.bodyClassEnterTransitonActive);
+    },
+
+    leave() {
+      document.body.classList.add(this.bodyClassLeaveTransitonActive);
+    },
+    afterLeave() {
+      document.body.classList.remove(this.bodyClassLeaveTransitonActive);
+    },
+    leaveCancelled() {
+      document.body.classList.remove(this.bodyClassLeaveTransitonActive);
+    },
+  }
 });
 </script>

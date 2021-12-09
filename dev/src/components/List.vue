@@ -22,7 +22,7 @@
           alt=""
         />
       </div>
-      <h2 class="text-3xl text-center mt-4">
+      <h2 class="text-xl text-center mt-4 break-words">
         {{ collection.title }}
       </h2>
     </router-link>

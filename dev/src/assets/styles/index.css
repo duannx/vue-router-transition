@@ -21,6 +21,33 @@
     gap: 2em;
 }
 
-.body-transition-active {
+/* Addition style for page transition */
+/* Prevent showing scrollbar when transitioning */
+.body-enter-transition-active, .body-leave-transition-active {
     overflow: hidden;
+}
+/* animation duration for animate.css */
+:root {
+    --animate-duration: 0.5s !important;
+}
+/* set the page to absolute when animating with animate.css to make it overlap each others */
+.animate__animated {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 1;
+}
+/* Fake class to make page visible on transitioning */
+.stay-here {
+    animation: stay-here var(--animate-duration);
+}
+@keyframes stay-here {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
 }

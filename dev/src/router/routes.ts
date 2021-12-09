@@ -11,8 +11,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 3,
-                in: 'fade',
-                out: 'fade'
+                enter: 'fade',
+                leave: 'fade',
             }
         }
     },
@@ -24,8 +24,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 2,
-                in: 'slide-left',
-                out: 'slide-left-reverse'
+                enter: 'slide-left',
+                leave: 'slide-left-reverse'
             }
         },
         props: {
@@ -38,8 +38,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 2,
-                in: 'slide-right',
-                out: 'slide-right-reverse'
+                enter: 'slide-right',
+                leave: 'slide-right-reverse'
             }
         },
         props: {
@@ -53,8 +53,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 2,
-                in: 'slide-left',
-                out: 'slide-left-reverse'
+                enter: 'slide-left',
+                leave: 'slide-left-reverse'
             }
         }
     },
@@ -64,8 +64,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 1,
-                in: 'slide-up',
-                out: 'slide-up-reverse'
+                enter: 'slide-up',
+                leave: 'slide-up-reverse'
             }
         },
         props: {
@@ -78,8 +78,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 1,
-                in: 'slide-down',
-                out: 'slide-down-reverse'
+                enter: 'slide-down',
+                leave: 'slide-down-reverse'
             }
         },
         props: {
@@ -92,8 +92,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 1,
-                in: 'fade',
-                out: 'fade'
+                enter: 'fade',
+                leave: 'fade'
             }
         },
         props: {
@@ -106,12 +106,92 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 1,
-                in: 'zoom-in',
-                out: 'zoom-in-reverse'
+                enter: 'zoom-in',
+                leave: 'zoom-in-reverse'
             }
         },
         props: {
             id: 1
+        }
+    },
+    {
+        path: '/product/5',
+        component: Product,
+        meta: {
+            transitions: {
+                priority: 1,
+                enter: {
+                    enterClass: 'animate__animated animate__bounceInDown',
+                    leaveClass: 'stay-here' // Add a fake class on the element to prevent vue imediatelly remove it
+                },
+                leave: {
+                    enterClass: '', // No need to add the fake class beacause vue imediatly add it
+                    leaveClass: 'animate__animated animate__bounceOutUp'
+                }
+            }
+        },
+        props: {
+            id: 5
+        }
+    },
+    {
+        path: '/product/6',
+        component: Product,
+        meta: {
+            transitions: {
+                priority: 1,
+                enter: {
+                    enterClass: 'animate__animated animate__backInLeft',
+                    leaveClass: 'stay-here' // Add a fake class on the element to prevent vue imediatelly remove it
+                },
+                leave: {
+                    enterClass: '',
+                    leaveClass: 'animate__animated animate__backOutLeft'
+                }
+            }
+        },
+        props: {
+            id: 6
+        }
+    },
+    {
+        path: '/product/7',
+        component: Product,
+        meta: {
+            transitions: {
+                priority: 1,
+                enter: {
+                    enterClass: 'animate__animated animate__flipInX',
+                    leaveClass: 'stay-here' // Add a fake class on the element to prevent vue imediatelly remove it
+                },
+                leave: {
+                    enterClass: '',
+                    leaveClass: 'animate__animated animate__flipOutX'
+                }
+            }
+        },
+        props: {
+            id: 7
+        }
+    },
+    {
+        path: '/product/8',
+        component: Product,
+        meta: {
+            transitions: {
+                priority: 1,
+                enter: {
+                    enterClass: 'animate__animated animate__rollIn',
+                    leaveClass: 'stay-here' // Add a fake class on the element to prevent vue imediatelly remove it
+                },
+                leave: {
+                    enterClass: '',
+                    leaveClass: 'animate__animated animate__rollOut'
+                }
+            }
+        },
+        props: {
+            id: 8
         }
     },
     {
@@ -121,8 +201,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
             transitions: {
                 priority: 1,
-                in: 'slide-left',
-                out: 'slide-left-reverse'
+                enter: 'slide-left',
+                leave: 'slide-left-reverse'
             }
         }
     }

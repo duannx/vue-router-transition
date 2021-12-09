@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rm -rf ../docs && vite build",
     "serve": "vite preview",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@duandz/vue-router-transition": "^1.0.2",
+    "@duandz/vue-router-transition": "^1.0.6",
+    "animate.css": "^4.1.1",
     "vue": "^3.2.16",
     "vue-router": "^4"
   },

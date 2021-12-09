@@ -1,5 +1,11 @@
+export type Transition = {
+    name: string | undefined;
+    enterClass: string | undefined;
+    leaveClass: string | undefined;
+}
+
 export type RouterMetaTransition = {
     priority: number;
-    in: string;
-    out: string;
+    enter: string | Transition;
+    leave: string | Transition;
 }

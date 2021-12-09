@@ -8,7 +8,7 @@
    
  - Configurable: Easily config different transition for **EACH route**. Support reverse transition to make your app animation look like native.
    
- - Easy to use: Just need to install the package and add some configs to use.
+ - Easy to use: Just need to install the package and add some configs to use. Easily integrate with other css library like Animate.css
  
 ## Install :coffee:
 **Note:** The plugin only support for Vue3+ and Vue Router Next (vue-router^4)
@@ -45,8 +45,8 @@ export default [
         meta: { // the plugin will use meta.transitons of your route
             transitions: {
                 priority: 3, // smaller number - higher priority
-                in: 'fade', // transition when navigate to this route
-                out: 'fade' // transition when navigate from this route
+                enter: 'fade', // transition when navigate to this route
+                leave: 'fade' // transition when navigate from this route
             }
         }
     },
@@ -57,8 +57,15 @@ export default [
         meta: {
             transitions: {
                 priority: 2,
-                in: 'slide-left',
-                out: 'slide-left-reverse'
+                enter: {
+                    name: '', // optional. It will render to {{name}}-enter-to {{name}}-enter-from {{name}}-leave-to {{name}}-leave-from
+                    enterClass: 'animate__animated animate__rollIn', // integrate with animate.css.
+                    leaveClass: ''
+                },
+                leave: {
+                    enterClass: '',
+                    leaveClass: 'animate__animated animate__rollOut'
+                }
             }
         }
     },
@@ -69,8 +76,8 @@ export default [
         meta: {
             transitions: {
                 priority: 1,
-                in: 'slide-right',
-                out: 'slide-right-reverse'
+                enter: 'slide-right',
+                leave: 'slide-right-reverse'
             }
         }
     }
@@ -110,9 +117,10 @@ props: {
 - `cd dev && yarn dev` to run the demo
 
 ## TODO
-- Add demo
+- <del> Add demo </del>
 - Add tests
-- Add more transition: slide-up, slide-down, zoom-in, zoom-out...
+- <del> Add more transition: slide-up, slide-down, zoom-in, zoom-out... </del>
+- Support Vue2
 - Support all Vue3 Transition properties
 - Support breakpoints config
 - Support transition hooks

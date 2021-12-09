@@ -96,7 +96,7 @@ export default defineComponent({
         products: [
           {
             id: 5,
-            title: "Cat 1",
+            title: "Cat 1 - animate__bounceInDown",
             path: "/product/5",
             description: "A cat",
             image:
@@ -105,7 +105,7 @@ export default defineComponent({
           },
           {
             id: 6,
-            title: "Cat 2",
+            title: "Cat 2 - animate__backInLeft",
             path: "/product/6",
             description: "A cat",
             image:
@@ -114,7 +114,7 @@ export default defineComponent({
           },
           {
             id: 7,
-            title: "Cat 3",
+            title: "Cat 3 - animate__flipInX",
             path: "/product/7",
             description: "A cat",
             image:
@@ -123,7 +123,7 @@ export default defineComponent({
           },
           {
             id: 8,
-            title: "Cat 4",
+            title: "Cat 4 - animate__rollIn",
             path: "/product/8",
             description: "A cat",
             image:

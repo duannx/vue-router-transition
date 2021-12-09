@@ -1,6 +1,6 @@
 {
   "name": "@duandz/vue-router-transition",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "Transition plugin for vue router next",
   "main": "dist/index.js",
   "author": "duandz",
@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
-    "publish": "npm publish --access public"
+    "publish-npm": "npm publish --access public"
   },
   "devDependencies": {
     "postcss": "^8.4.4",
