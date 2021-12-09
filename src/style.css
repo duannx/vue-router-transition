@@ -6,9 +6,18 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
     transition: transform var(--animation-duration) ease-in-out, opacity var(--animation-duration) ease-in-out;
+}
+
+.high-priority-transition {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
 }
 
 /* SLide left transition */

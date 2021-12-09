@@ -9,3 +9,8 @@ export type RouterMetaTransition = {
     enter: string | Transition;
     leave: string | Transition;
 }
+
+export type RouterHistory = {
+    path: string
+    previousRouterScrollPosition: number
+}

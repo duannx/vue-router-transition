@@ -5,9 +5,9 @@
       :name="route.meta.transition"
       :enter-active-class="route.meta.enterActiveClass"
       :leave-active-class="route.meta.leaveActiveClass"
-      @enter="enter"
-      @leave="leave"
-      @after-enter="afterEnter"
+      @before-enter="beforeEnter($event, route.meta.previousRouterScrollPosition)"
+      @before-leave="beforeLeave"
+      @after-enter="afterEnter($event, route.meta.previousRouterScrollPosition)"
       @after-leave="afterLeave"
       @enter-cancelled="enterCancelled"
       @leave-cancelled="leaveCancelled"
@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
-import { RouterMetaTransition, Transition } from "./types";
+import { RouterMetaTransition, Transition, RouterHistory } from "./types";
 
 export default defineComponent({
   props: {
@@ -29,30 +29,35 @@ export default defineComponent({
       default: "transition-active",
     },
     // Class add to body when enter transition active
-    bodyClassEnterTransitonActive:{
+    bodyClassEnterTransitonActive: {
       type: String,
       required: false,
       default: "body-enter-transition-active",
     },
     // Class add to body when leave transition active
     // It should be different with bodyClassEnterTransitonActive to avoid conflict and accident remove other class
-    bodyClassLeaveTransitonActive:{
+    bodyClassLeaveTransitonActive: {
       type: String,
       required: false,
       default: "body-leave-transition-active",
-    }
+    },
   },
   setup(props) {
     const router = useRouter();
     // Store router history. Not used yet.
-    const history: Array<string> = [];
+    const history: Array<RouterHistory> = [];
     // This class will be added to all the elements that are transitioning
 
     router.afterEach((to, from) => {
+      to.meta.previousRouterScrollPosition = 0;
+
       // Do not show animation on the first page load
       if (!history.length) {
         to.meta.transition = "";
-        history.push(to.path);
+        history.push({
+          path: to.path,
+          previousRouterScrollPosition: window.scrollY,
+        });
         return;
       }
 
@@ -67,7 +72,10 @@ export default defineComponent({
         leaveClass: undefined,
       };
 
-      function setTransition(routeTransition: Transition | string) {
+      function setTransition(
+        routeTransition: Transition | string,
+        highPriorityElement: string
+      ) {
         if (typeof routeTransition === "string") {
           transition.name = routeTransition;
         } else {
@@ -75,17 +83,25 @@ export default defineComponent({
           transition.enterClass = routeTransition.enterClass;
           transition.leaveClass = routeTransition.leaveClass;
         }
+
+        if (highPriorityElement == "enter") {
+          transition.enterClass =
+            "high-priority-transition " + (transition.enterClass || "");
+        } else {
+          transition.leaveClass =
+            "high-priority-transition " + (transition.leaveClass || "");
+        }
       }
 
       // Choose the highest priority transition (lowest number)
       if (toTransistions && fromTransistions) {
         fromTransistions.priority < toTransistions.priority
-          ? setTransition(fromTransistions.leave)
-          : setTransition(toTransistions.enter);
+          ? setTransition(fromTransistions.leave, "leave")
+          : setTransition(toTransistions.enter, "enter");
       } else if (toTransistions) {
-        setTransition(toTransistions.enter);
+        setTransition(toTransistions.enter, "enter");
       } else if (fromTransistions) {
-        setTransition(fromTransistions.leave);
+        setTransition(fromTransistions.leave, "leave");
       }
 
       to.meta.transition = transition.name
@@ -97,30 +113,40 @@ export default defineComponent({
       // Add the new path to the history.
       if (to.path !== from.path) {
         const beforeLast = history[history.length - 2];
-        if (!beforeLast || beforeLast !== to.path) {
-          history.push(to.path);
+        if (!beforeLast || beforeLast.path !== to.path) {
+          history.push({
+            path: to.path,
+            previousRouterScrollPosition: window.scrollY,
+          });
         } else {
           // Remove the last path from the history in case the router go back to beforeLast router
-          history.pop();
+          const lastHistory = history.pop();
+          if (lastHistory) {
+            to.meta.previousRouterScrollPosition = lastHistory.previousRouterScrollPosition;
+          }
         }
       }
     });
 
     return {};
   },
-  methods:{
+  methods: {
     // Add class to body when transition active
-    enter() {
+    beforeEnter(el: HTMLElement, previousRouterScrollPosition: number) {
+      el.style.top = -previousRouterScrollPosition + "px";
       document.body.classList.add(this.bodyClassEnterTransitonActive);
     },
-    afterEnter() {
+    afterEnter(el: HTMLElement, previousRouterScrollPosition: number) {
+      el.style.top = '';
       document.body.classList.remove(this.bodyClassEnterTransitonActive);
+      window.scrollTo(0, previousRouterScrollPosition || 0);
     },
-    enterCancelled() {
+    enterCancelled(el: HTMLElement) {
+      el.style.top = '';
       document.body.classList.remove(this.bodyClassEnterTransitonActive);
     },
 
-    leave() {
+    beforeLeave() {
       document.body.classList.add(this.bodyClassLeaveTransitonActive);
     },
     afterLeave() {
@@ -129,6 +155,6 @@ export default defineComponent({
     leaveCancelled() {
       document.body.classList.remove(this.bodyClassLeaveTransitonActive);
     },
-  }
+  },
 });
 </script>
