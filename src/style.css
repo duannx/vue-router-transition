@@ -13,11 +13,9 @@
 
 .high-priority-transition {
     z-index: 1;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    min-height: 100vh;
 }
 
 /* SLide left transition */
