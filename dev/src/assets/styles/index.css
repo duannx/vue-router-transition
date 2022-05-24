@@ -8,6 +8,15 @@
     }
 }
 
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+}
+.dynamic-content {
+    position: relative;
+}
 .page {
     @apply bg-white overflow-auto;
 }
@@ -23,7 +32,8 @@
 
 /* Addition style for page transition */
 /* Prevent showing scrollbar when transitioning */
-.body-enter-transition-active, .body-leave-transition-active {
+.body-enter-transition-active,
+.body-leave-transition-active {
     overflow: hidden;
 }
 /* animation duration for animate.css */
