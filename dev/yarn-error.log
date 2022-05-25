@@ -1,30 +1,30 @@
 Arguments: 
-  /Users/duannx/.nvm/versions/node/v12.20.0/bin/node /Users/duannx/.nvm/versions/node/v12.20.0/bin/yarn add @duandz/vue-router-navigation
+  /Users/admin/.nvm/versions/node/v16.14.2/bin/node /Users/admin/.yarn/bin/yarn.js add @duannx/vue-router-transition
 
 PATH: 
-  /Users/duannx/works/google-cloud-sdk/bin:/Users/duannx/.nvm/versions/node/v12.20.0/bin:/Users/duannx/go/bin:/usr/local/sbin:/Users/duannx/.yarn/bin:/Users/duannx/.config/yarn/global/node_modules/.bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin/python:/usr/local/bin:/Users/duannx/.local/bin:/Users/duannx/bin:/Users/duannx/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Users/duannx/works/google-cloud-sdk/bin:/Users/duannx/.nvm/versions/node/v12.20.0/bin:/Users/duannx/go/bin:/usr/local/sbin:/Users/duannx/.yarn/bin:/Users/duannx/.config/yarn/global/node_modules/.bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin/python:/Users/duannx/.local/bin:/Users/duannx/bin:/Users/duannx/works/go/bin:/Users/duannx/works/docker/beeketing-docker/bin:/usr/local/Cellar/mysql@5.7/5.7.28/bin/:/Users/duannx/works/go/bin:/Users/duannx/works/docker/beeketing-docker/bin:/usr/local/Cellar/mysql@5.7/5.7.28/bin/
+  /Users/admin/.nvm/versions/node/v16.14.2/bin:/Users/admin/Downloads/setup/google-cloud-sdk/bin:/Users/admin/.deno/bin:/Users/admin/.yarn/bin:/Users/admin/.config/yarn/global/node_modules/.bin:/usr/local/bin/python:/usr/local/bin:/Users/admin/.local/bin:/Users/admin/bin:/Users/admin/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
-  1.22.11
+  1.22.18
 
 Node version: 
-  12.20.0
+  16.14.2
 
 Platform: 
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@duandz%2fvue-router-navigation: Not found
-      at Request.params.callback [as _callback] (/Users/duannx/.nvm/versions/node/v12.20.0/lib/node_modules/yarn/lib/cli.js:66992:18)
-      at Request.self.callback (/Users/duannx/.nvm/versions/node/v12.20.0/lib/node_modules/yarn/lib/cli.js:140763:22)
-      at Request.emit (events.js:314:20)
-      at Request.<anonymous> (/Users/duannx/.nvm/versions/node/v12.20.0/lib/node_modules/yarn/lib/cli.js:141735:10)
-      at Request.emit (events.js:314:20)
-      at IncomingMessage.<anonymous> (/Users/duannx/.nvm/versions/node/v12.20.0/lib/node_modules/yarn/lib/cli.js:141657:12)
-      at Object.onceWrapper (events.js:420:28)
-      at IncomingMessage.emit (events.js:326:22)
-      at endReadableNT (_stream_readable.js:1241:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+  Error: https://registry.yarnpkg.com/@duannx%2fvue-router-transition: Not found
+      at Request.params.callback [as _callback] (/Users/admin/.yarn/lib/cli.js:66138:18)
+      at Request.self.callback (/Users/admin/.yarn/lib/cli.js:140883:22)
+      at Request.emit (node:events:526:28)
+      at Request.<anonymous> (/Users/admin/.yarn/lib/cli.js:141855:10)
+      at Request.emit (node:events:526:28)
+      at IncomingMessage.<anonymous> (/Users/admin/.yarn/lib/cli.js:141777:12)
+      at Object.onceWrapper (node:events:645:28)
+      at IncomingMessage.emit (node:events:538:35)
+      at endReadableNT (node:internal/streams/readable:1345:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
   {
@@ -32,10 +32,12 @@ npm manifest:
     "version": "0.0.0",
     "scripts": {
       "dev": "vite",
-      "build": "vue-tsc --noEmit && vite build",
-      "serve": "vite preview"
+      "build": "rm -rf ../docs && vite build",
+      "serve": "vite preview",
+      "preview": "vite preview"
     },
     "dependencies": {
+      "animate.css": "^4.1.1",
       "vue": "^3.2.16",
       "vue-router": "^4"
     },
@@ -43,6 +45,7 @@ npm manifest:
       "@vitejs/plugin-vue": "^1.9.3",
       "autoprefixer": "^10.4.0",
       "postcss": "^8.4.4",
+      "sass": "^1.52.1",
       "tailwindcss": "^2.2.19",
       "typescript": "^4.4.3",
       "vite": "^2.6.4",
@@ -310,6 +313,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
     integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
   
+  animate.css@^4.1.1:
+    version "4.1.1"
+    resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
+    integrity sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==
+  
   ansi-styles@^3.2.1:
     version "3.2.1"
     resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
@@ -453,6 +461,21 @@ Lockfile:
     integrity sha1-x84o821LzZdE5f/CxfzeHHMmH8A=
     dependencies:
       is-regex "^1.0.3"
+  
+  "chokidar@>=3.0.0 <4.0.0":
+    version "3.5.3"
+    resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
+    integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
+    dependencies:
+      anymatch "~3.1.2"
+      braces "~3.0.2"
+      glob-parent "~5.1.2"
+      is-binary-path "~2.1.0"
+      is-glob "~4.0.1"
+      normalize-path "~3.0.0"
+      readdirp "~3.6.0"
+    optionalDependencies:
+      fsevents "~2.3.2"
   
   chokidar@^3.5.2:
     version "3.5.2"
@@ -917,6 +940,11 @@ Lockfile:
       domhandler "^4.0.0"
       domutils "^2.5.2"
       entities "^2.0.0"
+  
+  immutable@^4.0.0:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.1.0.tgz#f795787f0db780183307b9eb2091fcac1f6fafef"
+    integrity sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==
   
   import-cwd@^3.0.0:
     version "3.0.0"
@@ -1479,6 +1507,15 @@ Lockfile:
     dependencies:
       queue-microtask "^1.2.2"
   
+  sass@^1.52.1:
+    version "1.52.1"
+    resolved "https://registry.yarnpkg.com/sass/-/sass-1.52.1.tgz#554693da808543031f9423911d62c60a1acf7889"
+    integrity sha512-fSzYTbr7z8oQnVJ3Acp9hV80dM1fkMN7mSD/25mpcct9F7FPBMOI8krEYALgU1aZoqGhQNhTPsuSmxjnIvAm4Q==
+    dependencies:
+      chokidar ">=3.0.0 <4.0.0"
+      immutable "^4.0.0"
+      source-map-js ">=0.6.2 <2.0.0"
+  
   semver@^7.3.5:
     version "7.3.5"
     resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
@@ -1492,6 +1529,11 @@ Lockfile:
     integrity sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
     dependencies:
       is-arrayish "^0.3.1"
+  
+  "source-map-js@>=0.6.2 <2.0.0":
+    version "1.0.2"
+    resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
+    integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
   
   source-map-js@^1.0.1:
     version "1.0.1"
