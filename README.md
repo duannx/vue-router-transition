@@ -3,6 +3,8 @@
 
 ## [Demo](https://duannx.github.io/vue-router-transition/)
 
+## [Code Demo](https://github.com/duannx/vue-router-transition/tree/master/dev/src)
+
 ## Why :question:
  - Light weight: Only one component added and optional pre-built css
    
