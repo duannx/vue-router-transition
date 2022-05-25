@@ -1,9 +1,9 @@
 {
-  "name": "@duandz/vue-router-transition",
-  "version": "1.0.8",
+  "name": "@duannx/vue-router-transition",
+  "version": "1.1.0",
   "description": "Transition plugin for vue router next",
   "main": "dist/index.js",
-  "author": "duandz",
+  "author": "duannx",
   "license": "MIT",
   "private": false,
   "scripts": {
