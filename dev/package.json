@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@duannx/vue-router-transition": "^1.0.9",
+    "@duannx/vue-router-transition": "^1.1.0",
     "animate.css": "^4.1.1",
     "vue": "^3.2.16",
     "vue-router": "^4"
