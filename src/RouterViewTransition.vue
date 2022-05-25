@@ -12,7 +12,7 @@
       @enter-cancelled="enterCancelled"
       @leave-cancelled="leaveCancelled"
     >
-      <component :is="Component" />
+      <component :key="routeKey" :is="Component" />
     </transition>
   </router-view>
 </template>
@@ -41,6 +41,11 @@ export default defineComponent({
       required: false,
       default: "body-leave-transition-active",
     },
+    // The key to distinct your router. The trasition will only trigger when the key is changed
+    routeKey: {
+      type: String,
+      requried: true,
+    }
   },
   setup(props) {
     const router = useRouter();
