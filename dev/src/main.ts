@@ -4,8 +4,8 @@ import router from './router'
 
 import 'animate.css'
 
-// import VueRouterTransition from '@duannx/vue-router-transition'
-import VueRouterTransition from '../..'
+import VueRouterTransition from '@duannx/vue-router-transition'
+// import VueRouterTransition from '../..'
 
 import '@duannx/vue-router-transition/dist/style.css'
 // import '../../dist/style.css'

@@ -36,10 +36,10 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
-"@duannx/vue-router-transition@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@duannx/vue-router-transition/-/vue-router-transition-1.1.0.tgz#5bf6d82f64e409416b5764db2e8b01f46a133d56"
-  integrity sha512-WFX8l7QpOFfYMJHKZInpIlQSBUITlYjAu5gyVHxHjkN8zIawjRDwKEHkff/jgvv6vuhlu7csW258YHCjdZAUtg==
+"@duannx/vue-router-transition@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@duannx/vue-router-transition/-/vue-router-transition-1.1.1.tgz#4a763929286dc648c31510a7b340e1f203ee1f0c"
+  integrity sha512-P/9c4RSkkqghTib3s8aN6fLjkWz7FtA6G57IENfHnuOioxluwgiRfd12Di2wEM2bIeYlFNXYOPbwtONFvf+Ilw==
 
 "@emmetio/abbreviation@^2.2.2":
   version "2.2.2"
