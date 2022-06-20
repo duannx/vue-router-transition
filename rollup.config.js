@@ -5,13 +5,22 @@ import postcss from 'rollup-plugin-postcss'
 export default async function config (args) {
     return [{
         input: ['src/index.ts'],
-        output: {
-            dir: 'dist',
-            format: 'es',
-        },
+        output: [
+            {
+                file: "dist/index.es.js",
+                format: "es",
+            },
+            {
+                file: "dist/index.cjs.js",
+                format: "cjs",
+                exports: "auto"
+            }
+        ],
         plugins: [
             vue(),
-            typescript()
+            typescript(
+                { tsconfigDefaults: { compilerOptions: { declaration: true }, include: ['src/index.ts'] }, }
+            )
         ],
     },
     {

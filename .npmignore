@@ -1,5 +1,6 @@
 /dev
 /node_modules
+/docs
 /src
 .gitignore
 .npmignore

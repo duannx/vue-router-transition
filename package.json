@@ -1,18 +1,22 @@
 {
   "name": "@duannx/vue-router-transition",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Transition plugin for vue router next",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
   "author": "duannx",
   "license": "MIT",
   "private": false,
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c",
+    "pre-build": "rimraf dist",
+    "build": "npm run pre-build && rollup -c",
     "publish-npm": "npm publish --access public"
   },
   "devDependencies": {
     "postcss": "^8.4.4",
+    "rimraf": "^3.0.2",
     "rollup": "^2.60.2",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.31.1",
