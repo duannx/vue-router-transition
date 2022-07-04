@@ -1,17 +1,8 @@
 <template>
   <router-view v-slot="{ Component, route }">
-    <transition
-      v-bind="$attrs"
-      :name="route.meta.transition"
-      :enter-active-class="route.meta.enterActiveClass"
-      :leave-active-class="route.meta.leaveActiveClass"
-      @before-enter="beforeEnter($event, route.meta.previousRouterScrollPosition)"
-      @before-leave="beforeLeave"
-      @after-enter="afterEnter($event, route.meta.previousRouterScrollPosition)"
-      @after-leave="afterLeave"
-      @enter-cancelled="enterCancelled"
-      @leave-cancelled="leaveCancelled"
-    >
+    <transition v-bind="$attrs" :name="route.meta.transition" :enter-active-class="route.meta.enterActiveClass" :leave-active-class="route.meta.leaveActiveClass"
+      @before-enter="beforeEnter($event, route.meta.previousRouterScrollPosition)" @before-leave="beforeLeave" @after-enter="afterEnter($event, route.meta.previousRouterScrollPosition)"
+      @after-leave="afterLeave" @enter-cancelled="enterCancelled" @leave-cancelled="leaveCancelled">
       <component :key="routeKey" :is="Component" />
     </transition>
   </router-view>
@@ -45,19 +36,25 @@ export default defineComponent({
     routeKey: {
       type: String,
       requried: true,
+    },
+    // On SSR, you might wait for the router resolved before mounting the app
+    // it leads to the first afterEach hook will not be fired in the page load
+    // so you should turn this option to false
+    ignoreFirstLoad: {
+      type: Boolean,
+      default: true,
     }
   },
   setup(props) {
     const router = useRouter();
     // Store router history. Not used yet.
     const history: Array<RouterHistory> = [];
-    // This class will be added to all the elements that are transitioning
 
     router.afterEach((to, from) => {
       to.meta.previousRouterScrollPosition = 0;
 
       // Do not show animation on the first page load
-      if (!history.length) {
+      if (props.ignoreFirstLoad && !history.length) {
         to.meta.transition = "";
         history.push({
           path: to.path,

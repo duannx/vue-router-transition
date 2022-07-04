@@ -33,7 +33,7 @@ import '@duannx/vue-router-transition/dist/style.css'
 ```html
 <!-- App.vue -->
 <template>
-   <RouterViewTransition/>
+   <RouterViewTransition :route-key="route.path"/>
 </template>
 ```
 ### Add config to your routes list
@@ -101,14 +101,39 @@ You can easily add your custom transition by providing a name and styling for it
 ## Props 
 ```js
 props: {
-  /**
-   * Default class added when the transition active for all type of transitions
-   */
-  defaultClassTransition: {
-    type: String,
-    required: false,
-    default: "transition-active"
-  },  
+    /**
+     * Default class added when the transition active for all type of transitions
+     */
+    defaultClassTransition: {
+        type: String,
+        required: false,
+        default: "transition-active"
+    },
+  // Class add to body when enter transition active
+    bodyClassEnterTransitonActive: {
+      type: String,
+      required: false,
+      default: "body-enter-transition-active",
+    },
+    // Class add to body when leave transition active
+    // It should be different with bodyClassEnterTransitonActive to avoid conflict and accident remove other class
+    bodyClassLeaveTransitonActive: {
+      type: String,
+      required: false,
+      default: "body-leave-transition-active",
+    },
+    // The key to distinct your router. The trasition will only trigger when the key is changed
+    routeKey: {
+      type: String,
+      requried: true,
+    },
+    // On SSR, you might wait for the router resolved before mounting the app
+    // it leads to the first afterEach hook will not be fired in the page load
+    // so you should turn this option to false
+    ignoreFirstLoad: {
+      type: Boolean,
+      default: true,
+    }  
 }
 ```
 
