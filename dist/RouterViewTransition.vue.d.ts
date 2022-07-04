@@ -18,6 +18,10 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         requried: boolean;
     };
+    ignoreFirstLoad: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
 }, {}, unknown, {}, {
     beforeEnter(el: HTMLElement, previousRouterScrollPosition: number): void;
     afterEnter(el: HTMLElement, previousRouterScrollPosition: number): void;
@@ -30,15 +34,18 @@ declare const _default: import("vue").DefineComponent<{
     bodyClassEnterTransitonActive?: unknown;
     bodyClassLeaveTransitonActive?: unknown;
     routeKey?: unknown;
+    ignoreFirstLoad?: unknown;
 } & {
     defaultClassTransition: string;
     bodyClassEnterTransitonActive: string;
     bodyClassLeaveTransitonActive: string;
+    ignoreFirstLoad: boolean;
 } & {
     routeKey?: string | undefined;
 }>, {
     defaultClassTransition: string;
     bodyClassEnterTransitonActive: string;
     bodyClassLeaveTransitonActive: string;
+    ignoreFirstLoad: boolean;
 }>;
 export default _default;
