@@ -8,6 +8,9 @@ export type RouterMetaTransition = {
     priority: number;
     enter: string | Transition;
     leave: string | Transition;
+    selfEnter?: string | Transition;
+    selfLeave?: string | Transition;
+    transitionID?: string;
 }
 
 export type RouterHistory = {
