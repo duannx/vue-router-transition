@@ -49,50 +49,6 @@ var script = defineComponent({
                 });
                 return;
             }
-            const toTransistions = to.meta
-                .transitions;
-            const fromTransistions = from.meta
-                .transitions;
-            const transition = {
-                name: undefined,
-                enterClass: undefined,
-                leaveClass: undefined,
-            };
-            function setTransition(routeTransition, highPriorityElement) {
-                if (typeof routeTransition === "string") {
-                    transition.name = routeTransition;
-                }
-                else {
-                    transition.name = routeTransition.name;
-                    transition.enterClass = routeTransition.enterClass;
-                    transition.leaveClass = routeTransition.leaveClass;
-                }
-                if (highPriorityElement == "enter") {
-                    transition.enterClass =
-                        "high-priority-transition " + (transition.enterClass || "");
-                }
-                else {
-                    transition.leaveClass =
-                        "high-priority-transition " + (transition.leaveClass || "");
-                }
-            }
-            // Choose the highest priority transition (lowest number)
-            if (toTransistions && fromTransistions) {
-                fromTransistions.priority < toTransistions.priority
-                    ? setTransition(fromTransistions.leave, "leave")
-                    : setTransition(toTransistions.enter, "enter");
-            }
-            else if (toTransistions) {
-                setTransition(toTransistions.enter, "enter");
-            }
-            else if (fromTransistions) {
-                setTransition(fromTransistions.leave, "leave");
-            }
-            to.meta.transition = transition.name
-                ? props.defaultClassTransition + " " + transition.name
-                : undefined;
-            to.meta.enterActiveClass = transition.enterClass;
-            to.meta.leaveActiveClass = transition.leaveClass;
             // Add the new path to the history.
             if (to.path !== from.path) {
                 const beforeLast = history[history.length - 2];
@@ -110,13 +66,73 @@ var script = defineComponent({
                     }
                 }
             }
+            // Decide which transition to use
+            const toTransistions = to.meta
+                ?.transitions;
+            const fromTransistions = from.meta
+                ?.transitions;
+            const transition = {
+                name: undefined,
+                enterClass: undefined,
+                leaveClass: undefined,
+            };
+            /**
+             * If two routes have the same name or same transitionID, use self animation
+             * If two routes have its own transition defined, use the transition that have higher priority (lower number)
+             * If there is only one transition defined, use it
+             * If there is no transition defined, ofcouse, no transition
+             */
+            if (to.name === from.name || (toTransistions?.transitionID && toTransistions?.transitionID === fromTransistions?.transitionID)) {
+                setTransition(toTransistions.selfEnter, 'enter');
+                return;
+            }
+            // Choose the highest priority transition (lowest number)
+            if (toTransistions && fromTransistions) {
+                fromTransistions.priority < toTransistions.priority
+                    ? setTransition(fromTransistions.leave, "leave")
+                    : setTransition(toTransistions.enter, "enter");
+                return;
+            }
+            if (toTransistions) {
+                setTransition(toTransistions.enter, "enter");
+                return;
+            }
+            if (fromTransistions) {
+                setTransition(fromTransistions.leave, "leave");
+                return;
+            }
+            function setTransition(routeTransition, highPriorityElement) {
+                if (!routeTransition)
+                    return;
+                if (typeof routeTransition === "string") {
+                    transition.name = routeTransition;
+                }
+                else {
+                    transition.name = routeTransition.name;
+                    transition.enterClass = routeTransition.enterClass;
+                    transition.leaveClass = routeTransition.leaveClass;
+                }
+                if (highPriorityElement == "enter") {
+                    transition.enterClass =
+                        "high-priority-transition " + (transition.enterClass || "");
+                }
+                else {
+                    transition.leaveClass =
+                        "high-priority-transition " + (transition.leaveClass || "");
+                }
+                to.meta.transition = transition.name
+                    ? props.defaultClassTransition + " " + transition.name
+                    : undefined;
+                to.meta.enterActiveClass = transition.enterClass;
+                to.meta.leaveActiveClass = transition.leaveClass;
+            }
         });
-        return {};
     },
     methods: {
         // Add class to body when transition active
         beforeEnter(el, previousRouterScrollPosition) {
-            el.style.top = -previousRouterScrollPosition + "px";
+            const currentScrollPosition = window.scrollY;
+            el.style.top = (currentScrollPosition - previousRouterScrollPosition) + "px";
             document.body.classList.add(this.bodyClassEnterTransitonActive);
         },
         afterEnter(el, previousRouterScrollPosition) {

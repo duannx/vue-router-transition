@@ -22,7 +22,7 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
-}, {}, unknown, {}, {
+}, void, unknown, {}, {
     beforeEnter(el: HTMLElement, previousRouterScrollPosition: number): void;
     afterEnter(el: HTMLElement, previousRouterScrollPosition: number): void;
     enterCancelled(el: HTMLElement): void;

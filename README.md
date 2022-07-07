@@ -79,7 +79,9 @@ export default [
             transitions: {
                 priority: 1,
                 enter: 'slide-right',
-                leave: 'slide-right-reverse'
+                leave: 'slide-right-reverse',
+                selfEnter: 'fade', // use selfEnter to define transition when redirect to the same route which has the same name or transitionID.
+                transitionID: 'product-route' // id that define which routes is the same and use selfEnter transition
             }
         }
     }
