@@ -83,7 +83,7 @@ var script = defineComponent({
              * If there is no transition defined, ofcouse, no transition
              */
             if (to.name === from.name || (toTransistions?.transitionID && toTransistions?.transitionID === fromTransistions?.transitionID)) {
-                setTransition(toTransistions.selfEnter, 'enter');
+                setTransition(toTransistions?.selfEnter, 'enter');
                 return;
             }
             // Choose the highest priority transition (lowest number)

@@ -99,7 +99,7 @@ export default defineComponent({
        */
 
       if (to.name === from.name || (toTransistions?.transitionID && toTransistions?.transitionID === fromTransistions?.transitionID)) {
-        setTransition(toTransistions.selfEnter, 'enter')
+        setTransition(toTransistions?.selfEnter, 'enter')
         return
       }
 
