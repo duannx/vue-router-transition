@@ -1,13 +1,22 @@
 {
   "name": "@duannx/vue-router-transition",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Transition plugin for vue router next",
-  "main": "dist/index.cjs.js",
-  "module": "./dist/index.es.js",
+  "main": "dist/index.cjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "author": "duannx",
   "license": "MIT",
   "private": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "dev": "rollup -c -w",
     "pre-build": "rimraf dist",

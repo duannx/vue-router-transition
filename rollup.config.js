@@ -7,11 +7,11 @@ export default async function config (args) {
         input: ['src/index.ts'],
         output: [
             {
-                file: "dist/index.es.js",
+                file: "dist/index.mjs",
                 format: "es",
             },
             {
-                file: "dist/index.cjs.js",
+                file: "dist/index.cjs",
                 format: "cjs",
                 exports: "auto"
             }
