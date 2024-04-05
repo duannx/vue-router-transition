@@ -1,6 +1,6 @@
 {
   "name": "@duannx/vue-router-transition",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Transition plugin for vue router next",
   "main": "dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -21,7 +21,8 @@
     "dev": "rollup -c -w",
     "pre-build": "rimraf dist",
     "build": "npm run pre-build && rollup -c",
-    "publish-npm": "npm publish --access public"
+    "publish-npm": "npm publish --access public",
+    "bump": "changeset version"
   },
   "devDependencies": {
     "postcss": "^8.4.4",
@@ -50,5 +51,8 @@
   "bugs": {
     "url": "https://github.com/duannx/vue-router-transition/issues"
   },
-  "homepage": "https://github.com/duannx/vue-router-transition#readme"
+  "homepage": "https://github.com/duannx/vue-router-transition#readme",
+  "dependencies": {
+    "@changesets/cli": "^2.27.1"
+  }
 }

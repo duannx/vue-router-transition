@@ -3,7 +3,14 @@
     <transition v-bind="$attrs" :name="route.meta.transition" :enter-active-class="route.meta.enterActiveClass" :leave-active-class="route.meta.leaveActiveClass"
       @before-enter="beforeEnter($event, route.meta.previousRouterScrollPosition)" @before-leave="beforeLeave" @after-enter="afterEnter($event, route.meta.previousRouterScrollPosition)"
       @after-leave="afterLeave" @enter-cancelled="enterCancelled" @leave-cancelled="leaveCancelled">
-      <component :key="routeKey" :is="Component" />
+      <template v-if="keepAlive">
+        <keep-alive v-bind="keepAliveAttrs">
+          <component :key="routeKey" :is="Component" />
+        </keep-alive>
+      </template>
+      <template v-else>
+        <component :key="routeKey" :is="Component" />
+      </template>
     </transition>
   </router-view>
 </template>
@@ -43,6 +50,16 @@ export default defineComponent({
     ignoreFirstLoad: {
       type: Boolean,
       default: true,
+    },
+    // Use keep-alive or not
+    keepAlive: {
+      type: Boolean,
+      default: false,
+    },
+    // Attributes for keep-alive
+    keepAliveAttrs: {
+      type: Object,
+      default: {}
     }
   },
   setup(props) {

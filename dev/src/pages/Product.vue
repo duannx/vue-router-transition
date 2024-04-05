@@ -1,10 +1,7 @@
 <template>
   <div class="page">
     <div class="page-content" v-if="product">
-      <router-link
-        class="mt-4 block font-bold underline"
-        :to="{ name: 'collection', params: { id: product.collection.id } }"
-      >
+      <router-link class="mt-4 block font-bold underline" :to="{ name: 'collection', params: { id: product.collection.id } }">
         Back
       </router-link>
       <h1 class="text-4xl mt-10">{{ product.title }}</h1>
@@ -18,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import Dog1 from "../assets/dog_1.jpeg";
 import Dog2 from "../assets/dog_2.jpeg";
@@ -148,13 +145,10 @@ export default defineComponent({
     ];
 
     const router = useRouter();
+    const currentId = router.currentRoute.value.params.id || props.id
+
     return {
-      product: computed(() => {
-        let id = +router.currentRoute.value.params.id;
-        if (!id) id = props.id;
-        const product = products.find((product) => product.id === id);
-        return product;
-      }),
+      product: products.find((product) => product.id === currentId),
     };
   },
 });

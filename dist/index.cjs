@@ -36,6 +36,16 @@ var script = vue.defineComponent({
         ignoreFirstLoad: {
             type: Boolean,
             default: true,
+        },
+        // Use keep-alive or not
+        keepAlive: {
+            type: Boolean,
+            default: false,
+        },
+        // Attributes for keep-alive
+        keepAliveAttrs: {
+            type: Object,
+            default: {}
         }
     },
     setup(props) {
@@ -180,7 +190,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onLeaveCancelled: _ctx.leaveCancelled
       }), {
         default: vue.withCtx(() => [
-          (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(Component), { key: _ctx.routeKey }))
+          (_ctx.keepAlive)
+            ? (vue.openBlock(), vue.createBlock(vue.KeepAlive, vue.normalizeProps(vue.mergeProps({ key: 0 }, _ctx.keepAliveAttrs)), [
+                (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(Component), { key: _ctx.routeKey }))
+              ], 1040 /* FULL_PROPS, DYNAMIC_SLOTS */))
+            : (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(Component), { key: _ctx.routeKey }))
         ]),
         _: 2 /* DYNAMIC */
       }, 1040 /* FULL_PROPS, DYNAMIC_SLOTS */, ["name", "enter-active-class", "leave-active-class", "onBeforeEnter", "onBeforeLeave", "onAfterEnter", "onAfterLeave", "onEnterCancelled", "onLeaveCancelled"])
