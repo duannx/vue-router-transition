@@ -22,6 +22,14 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    keepAlive: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    keepAliveAttrs: {
+        type: ObjectConstructor;
+        default: {};
+    };
 }, void, unknown, {}, {
     beforeEnter(el: HTMLElement, previousRouterScrollPosition: number): void;
     afterEnter(el: HTMLElement, previousRouterScrollPosition: number): void;
@@ -35,11 +43,15 @@ declare const _default: import("vue").DefineComponent<{
     bodyClassLeaveTransitonActive?: unknown;
     routeKey?: unknown;
     ignoreFirstLoad?: unknown;
+    keepAlive?: unknown;
+    keepAliveAttrs?: unknown;
 } & {
     defaultClassTransition: string;
     bodyClassEnterTransitonActive: string;
     bodyClassLeaveTransitonActive: string;
     ignoreFirstLoad: boolean;
+    keepAlive: boolean;
+    keepAliveAttrs: Record<string, any>;
 } & {
     routeKey?: string | undefined;
 }>, {
@@ -47,5 +59,7 @@ declare const _default: import("vue").DefineComponent<{
     bodyClassEnterTransitonActive: string;
     bodyClassLeaveTransitonActive: string;
     ignoreFirstLoad: boolean;
+    keepAlive: boolean;
+    keepAliveAttrs: Record<string, any>;
 }>;
 export default _default;

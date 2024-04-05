@@ -135,6 +135,16 @@ props: {
     ignoreFirstLoad: {
       type: Boolean,
       default: true,
+    },
+    // Use keep-alive or not
+    keepAlive: {
+      type: Boolean,
+      default: false,
+    },
+    // Attributes for keep-alive
+    keepAliveAttrs: {
+      type: Object,
+      default: {}
     }  
 }
 ```

@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, openBlock, createBlock, withCtx, createVNode, Transition, mergeProps, resolveDynamicComponent } from 'vue';
+import { defineComponent, resolveComponent, openBlock, createBlock, withCtx, createVNode, Transition, mergeProps, KeepAlive, normalizeProps, resolveDynamicComponent } from 'vue';
 import { useRouter } from 'vue-router';
 
 var script = defineComponent({
@@ -32,6 +32,16 @@ var script = defineComponent({
         ignoreFirstLoad: {
             type: Boolean,
             default: true,
+        },
+        // Use keep-alive or not
+        keepAlive: {
+            type: Boolean,
+            default: false,
+        },
+        // Attributes for keep-alive
+        keepAliveAttrs: {
+            type: Object,
+            default: {}
         }
     },
     setup(props) {
@@ -176,7 +186,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onLeaveCancelled: _ctx.leaveCancelled
       }), {
         default: withCtx(() => [
-          (openBlock(), createBlock(resolveDynamicComponent(Component), { key: _ctx.routeKey }))
+          (_ctx.keepAlive)
+            ? (openBlock(), createBlock(KeepAlive, normalizeProps(mergeProps({ key: 0 }, _ctx.keepAliveAttrs)), [
+                (openBlock(), createBlock(resolveDynamicComponent(Component), { key: _ctx.routeKey }))
+              ], 1040 /* FULL_PROPS, DYNAMIC_SLOTS */))
+            : (openBlock(), createBlock(resolveDynamicComponent(Component), { key: _ctx.routeKey }))
         ]),
         _: 2 /* DYNAMIC */
       }, 1040 /* FULL_PROPS, DYNAMIC_SLOTS */, ["name", "enter-active-class", "leave-active-class", "onBeforeEnter", "onBeforeLeave", "onAfterEnter", "onAfterLeave", "onEnterCancelled", "onLeaveCancelled"])
