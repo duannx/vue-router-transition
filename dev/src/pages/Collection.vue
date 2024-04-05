@@ -1,9 +1,7 @@
 <template>
   <div class="page">
     <div class="page-content">
-      <router-link class="mt-4 block font-bold underline" :to="{ name: 'home' }"
-        >Back</router-link
-      >
+      <router-link class="mt-4 block font-bold underline" :to="{ name: 'home' }">Back</router-link>
       <h1 class="text-4xl text-center mt-10">
         Collection: {{ collection.title }}
       </h1>
@@ -13,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import List from "../components/List.vue";
 import Dog1 from "../assets/dog_1.jpeg";
@@ -52,6 +50,8 @@ export default defineComponent({
   },
   setup(props) {
     const router = useRouter();
+    const currentId = router.currentRoute.value.params.id || props.id
+
     const collections: Array<Collection> = [
       {
         id: 1,
@@ -132,11 +132,7 @@ export default defineComponent({
     ];
 
     return {
-      collection: computed(() => {
-        let id = +router.currentRoute.value.params.id;
-        if (!id) id = props.id;
-        return collections.find((collection) => collection.id == id);
-      }),
+      collection: collections.find((collection) => collection.id == currentId)
     };
   },
 });

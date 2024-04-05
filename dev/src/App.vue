@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="dynamic-content">
-    <RouterViewTransition :routeKey="route.fullPath" defaultClassTransition="transition-active" />
+    <RouterViewTransition :keepAliveAttrs="{max: 2}" :keepAlive="true" :routeKey="route.fullPath" defaultClassTransition="transition-active" />
   </div>
 
 </template>
